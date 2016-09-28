@@ -10,6 +10,7 @@ void setup()
 		newParticle[i] = new NormalParticle();
 	}
 	newParticle[0] = new OddballParticle();
+	newParticle[1] = new JumboParticle();
 }
 
 
@@ -31,20 +32,27 @@ void draw()
 class NormalParticle implements Particle
 {
 	int myColor = color((int)(Math.random()*180), 250 ,(int)(Math.random()*180));
-	double myX, myY, speed, theta;
+	double myX, myY, speed;
+	int theta;
 
 	NormalParticle()
 	{
 		myX = 300;
 		myY = 300;
-		speed = Math.random()*3+5;
-		theta = Math.random()*4;
+		speed = Math.random()*1+4;
+		theta = (int)(Math.random()*4);
 	}
 
 	public void move()
 	{
 		myX += Math.cos(theta) * speed;
 		myY += Math.sin(theta) * speed;
+        System.out.println(frameCount);
+		if (frameCount%100 == 0)
+		{
+			myX = 300;
+			myY = 300;
+		}
 	}
 
 	public void show()
@@ -87,8 +95,8 @@ class OddballParticle implements Particle
 
 	public void move() 
 	{
-		myX += Math.random()*10-5;
-		myY += Math.random()*10-5;	
+		myX += Math.random()*5;
+		myY += Math.random()*5;	
 	}
 }
 
@@ -99,6 +107,11 @@ class OddballParticle implements Particle
 
 class JumboParticle extends NormalParticle
 {
-	//your code here
+	public void show()
+	{
+		noStroke();
+		fill(120,120,220);
+		ellipse((float)myX, (float)myY, 50, 50);
+	}
 }
 
