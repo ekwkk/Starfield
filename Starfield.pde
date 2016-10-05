@@ -1,5 +1,5 @@
 Particle [] newParticle = new Particle[100];
-Particle [] anotherParticle = new Particle[1000];
+Particle [] anotherParticle = new Particle[100];
 
 
 void setup()
@@ -117,7 +117,6 @@ class OddballParticle implements Particle
 		d2 = 10 + (sin(angle + PI/2) * diameter/2) + diameter/2;
  		angle += 0.05;
  		myX += 2;
- 		System.out.println(frameCount);
  		if (frameCount%600 == 0)
 		{
 			myX = 0;

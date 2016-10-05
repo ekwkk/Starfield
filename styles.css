@@ -1,8 +1,8 @@
 
 body {
     background-image: url("star.jpg");
-    color: rgb(255);
-    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    color: #ffffff;
+    font-family: Consolas, monaco, monospace;
     text-align: center;
 }
 
@@ -13,7 +13,7 @@ body {
 }
 
 header {
-	
+	font-size: 30px;
 }
 
 footer {
