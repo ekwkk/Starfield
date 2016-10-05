@@ -1,8 +1,8 @@
 
 body {
-    background-color: rgb(200,200,200);
-    color: rgb(0,0,0);
-    font-family: "Open Sans", sans-serif;
+    background-image: url("star.jpg");
+    color: rgb(255);
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     text-align: center;
 }
 
@@ -17,7 +17,6 @@ header {
 }
 
 footer {
-	font-style: italic;
 	font-size: 90%;
 }
 
