@@ -1,4 +1,5 @@
 Particle [] newParticle = new Particle[100];
+Particle [] anotherParticle = new Particle[1000];
 
 
 void setup()
@@ -11,6 +12,13 @@ void setup()
 	}
 	newParticle[0] = new OddballParticle();
 	newParticle[1] = new JumboParticle();
+
+
+	for (int i = 0; i < anotherParticle.length; i++)
+	{
+		anotherParticle[i] = new WeirdParticle(300,300);
+	}
+
 }
 
 
@@ -18,12 +26,19 @@ void setup()
 
 void draw()
 {
-	background(255);
+	background(0);
 	for (int i = 0; i < newParticle.length; i++)
 	{
 		newParticle[i].show();
 		newParticle[i].move();
 	}
+
+	for (int i = 0; i < anotherParticle.length; i++)
+	{
+		anotherParticle[i].show();
+		anotherParticle[i].move();
+	}
+
 }
 
 
@@ -32,22 +47,23 @@ void draw()
 class NormalParticle implements Particle
 {
 	int myColor = color((int)(Math.random()*180), 250 ,(int)(Math.random()*180));
-	double myX, myY, speed;
-	int theta;
+	double myX, myY, speed, theta;
 
-	NormalParticle()
+
+
+    NormalParticle()
 	{
 		myX = 300;
 		myY = 300;
-		speed = Math.random()*1+4;
-		theta = (int)(Math.random()*4);
+		speed = (Math.random()*1+4);
+		theta = (Math.random()*7);
 	}
+
 
 	public void move()
 	{
 		myX += Math.cos(theta) * speed;
 		myY += Math.sin(theta) * speed;
-        System.out.println(frameCount);
 		if (frameCount%100 == 0)
 		{
 			myX = 300;
@@ -59,7 +75,7 @@ class NormalParticle implements Particle
 	{
 		noStroke();
 		fill(myColor);
-		ellipse((float)myX, (float)myY, 10, 10);
+		ellipse((float)myX, (float)myY, 20, 20);
 	}
 }
 
@@ -79,24 +95,34 @@ interface Particle
 class OddballParticle implements Particle
 {
 	double myX, myY;
+	float diameter, d2; 
+	float angle = 0;
 
 	OddballParticle() 
 	{
-		myX = 300;
-		myY = 300;
+		myX = 0;
+		myY = Math.random()*600;
 	}
 
 	public void show() 
 	{
 		noStroke();
-		fill(0);
-		rect((float)myX, (float)myY, 20, 20);	
+		diameter = (float)myY - 500;
+  		fill(255, 204, 0);
+  		ellipse((float)myX/2, (float)myY/2, d2, d2);
 	}
 
 	public void move() 
 	{
-		myX += Math.random()*5;
-		myY += Math.random()*5;	
+		d2 = 10 + (sin(angle + PI/2) * diameter/2) + diameter/2;
+ 		angle += 0.05;
+ 		myX += 2;
+ 		System.out.println(frameCount);
+ 		if (frameCount%600 == 0)
+		{
+			myX = 0;
+			myY = (Math.random()*600);
+		}
 	}
 }
 
@@ -107,6 +133,7 @@ class OddballParticle implements Particle
 
 class JumboParticle extends NormalParticle
 {
+
 	public void show()
 	{
 		noStroke();
@@ -115,3 +142,36 @@ class JumboParticle extends NormalParticle
 	}
 }
 
+
+
+class WeirdParticle extends NormalParticle
+{
+	int myX, myY;
+
+	WeirdParticle(int x, int y)
+	{
+		myX = x;
+		myY = y;
+		myColor = color(255);
+	}
+
+
+	public void show()
+	{
+		noStroke();
+		fill(myColor);
+		ellipse(myX, myY, 10, 10);
+	}
+
+
+	public void move()
+	{
+		myX += (int)(Math.cos(theta) * speed);
+		myY += (int)(Math.sin(theta) * speed);
+		if (frameCount%75 == 0)
+		{
+			myX = 300;
+			myY = 300;
+		}
+	}
+}
