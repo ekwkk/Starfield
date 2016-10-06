@@ -101,7 +101,7 @@ class OddballParticle implements Particle
 	OddballParticle() 
 	{
 		myX = 0;
-		myY = Math.random()*600;
+		myY = 400;
 	}
 
 	public void show() 
@@ -120,7 +120,7 @@ class OddballParticle implements Particle
  		if (frameCount%600 == 0)
 		{
 			myX = 0;
-			myY = (Math.random()*600);
+			myY = 400;
 		}
 	}
 }
